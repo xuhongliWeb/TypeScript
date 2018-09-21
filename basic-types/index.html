@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./index.js"></script>
+    <div class="box">
+        <h1>基础类型</h1>
+        <dl>
+            <dt>介绍</dt>
+            <dd>为了让程序有价值，我们需要能够处理最简单的数据单元：数字，字符串，结构体，布尔值等。TypeScript支持与javscript几乎相同的数据类型，此外还提供了实用的枚举类型方便我们使用</dd>
+        </dl>
+        <dl>
+            <dt>
+                <h2>布尔值</h2>
+            </dt>
+            <dd>最基本的数据类型就是简单的true/false值，在jascript和TypeScript里 叫做boolean</dd>
+            <dd>
+                <code>
+                    <p>
+                        let isDone: boolean = false
+                    </p>
+                </code>
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <h2>数字</h2>
+            </dt>
+            <dd>
+                和javscrript一样，TypeScript里的所有数字都是浮点数，这些浮点的类型是number，除了支持十进制和十六进制字面量，Typescript还支持ECMAScript2015中引入的二进制和八进制字面量
+            </dd>
+            <dd>
+                <code>
+                    <p>
+                        let decLiteral: number = 7;
+                    </p>
+                    <p>
+                        let hexLiteral: number = 0xf00d;
+                    </p>
+                    <p>
+                        let binaryLiteral: number = 0b1010;
+                    </p>
+                    <p>
+                        let octalLiteral: number = 0o744;
+                    </p>
+                </code>
+            </dd>
+        </dl>
+        <!-- end -->
+        <dl>
+            <dt>
+                <h2>字符串</h2>
+            </dt>
+            <dd>
+                jsvascript程序的另一项基本操作就是处理网页或服务器 的文本数据，我们使用string表示文本数据类型，和javascrpt一样，可以使用双引号或单引号表示字符串
+            </dd>
+            <dd>
+                <code>
+                    <p>
+                        let name: string = 'xu'
+                            name = 'li'
+                    </p>
+                    <p>
+                        还可以使用模板字符串，她可以定义多行文本和内嵌表达式，这种字符串被反引号包围(`),并且以${expr}这种形式嵌入表达式
+                    </p>
+                    <p>
+                        let name: string = `xu`
+                        let num: number = 11
+                        let sentence: string = `Hello,My name is ${name}, I'ii be ${num} years old next month`
+                    </p>
+                </code>
+            </dd>
+        </dl>
+        <!-- end -->
+        <dl>
+            <dt>
+                <h2>数组</h2>
+            </dt>
+            <dd>
+                typescript像javascript一样可以操作数组元素。有两种方式可以定义数组，第一种，可以在元素类型后面接上[]，表示此类型元素组成一个数组
+            </dd>
+            <dd>
+                <code>
+                    <p>
+                        第一种，可以在元素类型后面接上[]，表示此类型元素组成一个数组
+                        let list:number[] = [1,2,3] 数组内容只能是number类型
+                    </p>
+                    <p>
+                        第二种方式是使用数组泛型 Array<元素类型> <br />
+                        let list:Array<number> = [1,2,3]
+                    </p>
+                </code>
+            </dd>
+        </dl>
+    </div>
+</body>
+</html>
