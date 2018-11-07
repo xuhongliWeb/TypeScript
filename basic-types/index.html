@@ -97,6 +97,59 @@
                 </code>
             </dd>
         </dl>
+        <dl>
+            <dt>
+                <h2>元组 Tuple</h2>
+            </dt>
+            <dd>
+                元祖类型允许表示一个已知元素数量和类型的数组，各元素的类型的不必相同。比如,你可以定义一对值分别为string和number类型的元组
+            </dd>
+            <dd>
+                <code>
+                    let x: [string,number]
+                    x = ['hello',123] // OK
+
+                    x = [123, 'hello'] // Error
+                </code>
+            </dd>
+
+            <dd>
+                <p>当访问一个已知索引的元素,会得到正确的类型</p>
+                <code>
+                    x[0].substr(1) // Ok
+                    x[1].subser(1) // Error 'number' does not have 'substr'
+                </code>
+            </dd>
+            <dd>
+                <p>当访问一个越界的元素，会使用联合类型替代</p>
+                <code>
+                    x[3] = 'world' // OK 字符串可以赋值给(string|number) 类型
+                    console.log(x[5].toString()) // OK 'string ' 和 ' number' 都有toString
+
+                    x[6] = true // Error 布尔不是(string | number) 类型
+                </code>
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <h2>枚举</h2>
+            </dt>
+            <dd>enum 类型是对Javascript 标准数据类型的一个补充。像C#等 其他预言一样，使用枚举类型可以为一组数值赋予友好的名字</dd>
+            <dd>
+                <code>
+                    enum Color {Red,Green,Blue}
+                    let c:Color = Color.Red
+                </code>
+            </dd>
+            <dd>默认情况下，从0开始为元素编号，你也可以手动的指定成员的数值，列如，我们将列子改成1开始编号</dd>
+            <dd>
+                <code>
+                    enum Color {Red = 1, Green,Blue}
+                    let Color: Color = Color[1]
+                    console.log(Red) 
+                </code>
+            </dd>
+        </dl>
     </div>
 </body>
 </html>
