@@ -150,6 +150,204 @@
                 </code>
             </dd>
         </dl>
+        <dl>
+            <dt><h3>Any</h3></dt>
+            <dd>有时候，我们会想要为那些在编程阶段还不清楚类型的变量指定一个类型。这些值可能来自动态的内容。比如来自用户输入或第三放的代码库。这种情况下，我们不希望类型检查对这些值对其进行检查，我们可以使用any类型来标记这些变量</dd>
+            <dd>
+                <code>
+                    let color:any = 4
+                    let str:any =true
+                    str = 'str'
+                    str = null
+                </code>
+            </dd>
+            <dd>
+                <p>
+                    在对现有代码进行改写的时候，any 十分有用，他允许你编译时可选择的包含或移除类型检查。你可能认为Object有相似的作用，就像他在其他语言中那样，
+                    <br />
+                    但是Object类型的变量只是运行你给他赋予任意的值，但是却不能在上面调用任意的方法，即便他时真的有这些方法
+                </p>
+            </dd>
+            <dd>
+                <P>
+                    <code>
+                        let number: any = 3
+                        number.toFixed(2)
+
+
+                        let objType:Object = 3
+                        objType.toFixed(2) // Error
+                    </code>
+                </P>
+            </dd>
+            <dd>
+                <p>
+                    当你只知道一部分数据类型时， any类型也是有用的
+                </p>
+            </dd>
+            <dd>
+                <p>
+                    <code>
+                        let list: any = [23,'eqw',true]
+
+                    </code>
+                </p>
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <h3>Void</h3>
+            </dt>
+            <dd>某种程度上来说，void类型像是与any类型相反，他表示没有任何类型，当一个函数没有返回值时，你通常会见到其返回类型是void</dd>
+            <dd>
+                <p>
+                    <code>
+                        function warnUser():void{
+                            console.log(warnUser)
+                        }
+                    </code>
+                </p>
+            </dd>
+            <dd>
+                <p>声明一个void类型的变量没有什么大用，因为你只能赋予undefined和null</p>
+            </dd>
+            <dd>
+                <p>
+                    <code>
+                        let unusable:void = uindefined
+                    </code>
+                </p>
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <h3>
+                    null  和 undefined
+                </h3>
+                <p>
+                    TypeScript里undefined和Null两者各自有自己的类型，和void类似，他们本身的类型用处不是很大
+                </p>
+            </dt>
+            <dd>
+                <code>
+                    let u:undefined = undefined
+                    let n:null = null
+                </code>
+            </dd>
+            <dd>
+                <p>
+                    默认情况下null和undefined是所有类型的子类型，就是说你可以把null和undefined赋值给number的变量
+                    <br />
+                    然而，当你指定了--strictNullChecks标记，null和undefined只能赋值给void和它们各自。 这能避免 很多常见的问题。 也许在某处你想传入一个 string或null或undefined，你可以使用联合类型string | null | undefined。 再次说明，稍后我们会介绍联合类型。
+                    <br />
+                    注意：我们鼓励尽可能地使用--strictNullChecks，但在本手册里我们假设这个标记是关闭的。
+                </p>
+                
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <h3>Never</h3>
+                <p>
+                    Never 类型表示的类型是那些永不存在的类型。列如，never类型是那些总会抛出异常或根本不会有返回值的函数或箭头函数表达式的返回值类型，变量也可能是never类型，当他们被永不为真的类型保护所约束时
+                </p>
+            </dt>
+            <dd>
+                <p>
+                    never 类型是任何类型的子类型， 也可以赋值给任何类型，然而，没有类型是never的子类型或可以赋值给never类型(除never本身之外)  即使any 也不可以赋值never
+                </p>
+            </dd>
+            <dd>
+                <p>返回never 的函数必须存在无法达到的终点</p>
+                <p>
+                    <code>
+                        function error(message:string) :never{
+                            throw new Error(message)
+                        }
+                    </code>
+                </p>
+                <p>推断的返回值为never</p>
+                <p>
+                    <code>
+                        function fail() :never{
+                            return error('Something failed')
+                        }
+                    </code>
+                </p>
+                <p>// 返回never的函数必须存在无法达到的终点</p>
+                <p> 
+                    <code>
+                        function infiniteLoop() :never {
+                            while(true){
+    
+                            }
+                        }
+                    </code>
+                    
+                </p>
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <h3>Object</h3>
+                <p>object 表示非原始类型，也就是出number/streing/boolean/symbol/undefined/null， 之外的类型</p>
+            </dt>
+            <dd>
+                <p>
+                    使用object 类型就可以更好的表示Object.create这样的API
+                </p>
+            </dd>
+            <dd>
+                <p>
+                    <code>
+                        declare function create(o:object|null):void
+
+                        create({ prop: 0 }); // OK
+                        create(null); // OK
+
+                        create(42); // Error
+                        create("string"); // Error
+                        create(false); // Error
+                        create(undefined); // Error
+                    </code>
+                </p>
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                 <h3>
+                     类型断言
+                 </h3>
+                 <p>
+                     有时候你会遇到这样的情况，你会比TypeScript更了解某个值的信息，通常这会发生在你清楚的知道一个实体具有比他现有类型更确切的类型
+                 </p>
+            </dt>
+            <dd>
+                <p>
+                    通过类型断言这种方式可以告诉编译器， 相信我， 我知道自己在干什么， 类型断言就好比其他语言里的类型转换， 但是不进行特殊的数据检查和解构， 他没有运行时的影响， 只是在编译起作用，TS会假设你已经进行了必须的检查 
+                </p>
+            </dd>
+            <dd>
+                <p>类型断言有两种形式。 第一种是 尖括号语法</p>
+                <p>
+                    <code>
+                        let someValue:any = this is a bundleRenderer.renderToString
+                        let strLength:number = (<string> someValue).length
+                    </code>
+                </p>
+                <p>第二种 as 语法</p>
+                <p>
+                    <code>
+                        let someValue :any = 'this is a string'
+
+                        let someLength:number = (someValue as string).length
+                    </code>
+                </p>
+            </dd>
+            <dd>
+                    两种形式是等价的。 至于使用哪个大多数情况下是凭个人喜好；然而，当你在TypeScript里使用JSX时，只有 as语法断言是被允许的。
+            </dd>
+        </dl>
     </div>
 </body>
 </html>

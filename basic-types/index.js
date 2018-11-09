@@ -36,5 +36,37 @@ var Color;
 })(Color || (Color = {}));
 var Colorq = Color[2];
 console.log(Colorq, 'colorQ');
-var colorB = Color[5];
+var colorB = Color.Blue;
 console.log(colorB, 'colorB');
+// any 
+var anyY = 'str';
+anyY = 21;
+anyY = true;
+anyY = 21.3123123312;
+anyY = anyY.toFixed(2);
+console.log(anyY, 'any');
+// Object 类型 也可以实现任意赋值类型， 但是不能任意调用方法
+var objY = 'obj';
+objY = true;
+objY = 231;
+// objY.toFixed(2) // 报错
+console.log(objY, 'object');
+// never
+// let n: never = 21; // error
+function error(message) {
+    throw Error(message);
+}
+// error('error')
+function fail() {
+    return error('Something failed');
+}
+// create(null)
+// create(1)
+// 类型断言
+var someValue = 'this is a string ';
+var someLength = someValue.length;
+var someS = someValue.length;
+console.log(someS, 'someS');
+console.log(someLength, 'someLength-----1');
+var someLength2 = someValue.length;
+console.log(someLength2, 'someLength2-----2'); // 建议用 as
